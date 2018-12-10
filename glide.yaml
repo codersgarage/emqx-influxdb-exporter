@@ -1,0 +1,23 @@
+package: github.com/codersgarage/emqx-influxdb-exporter
+import:
+- package: github.com/RichardKnop/machinery
+  version: ^1.5.3
+  subpackages:
+  - v1
+  - v1/config
+- package: github.com/go-chi/chi
+  version: ^3.3.3
+  subpackages:
+  - middleware
+- package: github.com/go-sql-driver/mysql
+  version: ^1.4.1
+- package: github.com/jinzhu/gorm
+  version: ^1.9.2
+- package: github.com/sirupsen/logrus
+  version: ^1.2.0
+- package: github.com/spf13/cobra
+  version: ^0.0.3
+- package: github.com/spf13/viper
+  version: ^1.3.1
+  subpackages:
+  - remote

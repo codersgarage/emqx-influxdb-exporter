@@ -1,0 +1,22 @@
+version: '2'
+
+services:
+  database:
+    image: mariadb
+    restart: always
+    ports:
+    - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: boom
+      MYSQL_DATABASE: test
+
+  consul:
+    image: consul
+    ports:
+    - "8500:8500"
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+    - "15672:15672"
+    - "5672:5672"
