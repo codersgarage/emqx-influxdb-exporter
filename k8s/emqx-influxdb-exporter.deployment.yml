@@ -1,0 +1,29 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: emqx-influxdb-exporter
+  namespace: emqx
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: emqx-influxdb-exporter
+    spec:
+      containers:
+      - name: emqx-influxdb-exporter
+        args: ["serve"]
+        image: s4kibs4mi/emqx-influxdb-exporter:0.0.1
+        env:
+        - name: INFLUX_URL
+          value: "http://localhost:8086/write?db=grafana_influxdb"
+        - name: EMQX_URL
+          value: "http://localhost:8080"
+        - name: EMQX_APP_ID
+          value: "test"
+        - name: EMQX_APP_SECRET
+          value: "test"
+        ports:
+        - containerPort: 8060
+          name: http-port
+          protocol: TCP

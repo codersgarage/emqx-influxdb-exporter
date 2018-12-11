@@ -46,13 +46,13 @@ func Router() http.Handler {
 func registerRoutes() {
 	router.Route("/v1", func(r chi.Router) {
 		r.Get("/", index)
-		r.Mount("/stat", statRoutes())
+		r.Mount("/unified", statRoutes())
 	})
 }
 
 func statRoutes() http.Handler {
-	sr := NewStatRoute()
+	ur := NewUnifiedRoute()
 	return chi.NewRouter().Group(func(r chi.Router) {
-		r.Post("/", sr.sendStat)
+		r.Post("/", ur.unifiedStat)
 	})
 }

@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: emqx-influxdb-exporter
+  namespace: emqx
+spec:
+  ports:
+  - name: http
+    port: 8060
+    targetPort: 8060
+  selector:
+    app: emqx-influxdb-exporter
+  type: LoadBalancer

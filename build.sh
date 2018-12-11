@@ -1,17 +1,17 @@
 #!/bin/bash
 
 export CONSUL_URL="localhost:8500"
-export CONSUL_PATH="golang-restful-boilerplate"
+export CONSUL_PATH="emqx-influxdb-exporter"
 
 export GOARCH="amd64"
-export GOOS="darwin"
-#export GOOS="linux"
+#export GOOS="darwin"
+export GOOS="linux"
 export CGO_ENABLED=0
 
 cmd=$1
 
 package="github.com/codersgarage/emqx-influxdb-exporter"
-binary="golang-restful-boilerplate"
+binary="emqx-influxdb-exporter"
 
 if [ "$cmd" = "run" ]; then
     echo "Executing run command"
@@ -49,6 +49,14 @@ fi
 if [ "$cmd" = "m_auto" ]; then
     echo "Executing migration auto command"
     ./${binary} migration auto
+    exit;
+fi
+
+if [ "$cmd" = "dock_build" ]; then
+    echo "Executing build command"
+    glide install
+    go build -v -o ${binary}
+    docker build -t s4kibs4mi/${binary}:$2 .
     exit;
 fi
 

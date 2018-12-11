@@ -10,7 +10,7 @@ import (
 )
 
 var (
-	// RootCmd is the root command of boot-kit service
+	// RootCmd is the root command of emqx-influxdb-exporter service
 	RootCmd = &cobra.Command{
 		Use:   "emqx-influxdb-exporter",
 		Short: "A http service",
@@ -26,7 +26,7 @@ func init() {
 func Execute() {
 	log.SetupLog()
 
-	//go worker.RunStatWorker()
+	go worker.RunStatWorker()
 	go worker.RunMetricsWorker()
 
 	if err := RootCmd.Execute(); err != nil {
